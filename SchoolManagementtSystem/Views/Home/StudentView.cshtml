@@ -1,0 +1,55 @@
+﻿@model SchoolManagementtSystem.Models.ViewModel
+@{
+    ViewBag.Title = "StudentView";
+}
+<style type="text/css">
+    
+    .Grid {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+
+        .Grid th {
+            background-color: #F7F7F7;
+            font-weight: bold;
+        }
+
+        .Grid th, .Grid td {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .Grid, .Grid table td {
+            border: 0px solid #ccc;
+        }
+
+            .Grid th a, .Grid th a:visited {
+                color: #333;
+            }
+</style>
+<h2>StudentView</h2>
+<h3>Classes In Our School</h3>
+<div>
+    @{ WebGrid obj = new WebGrid(source: Model.ClassMastersss, canPage: true, rowsPerPage: 10);
+
+        @*@obj.GetHtml();*@
+        @obj.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        columns: obj.Columns(
+                 obj.Column("ClassId", "Class Id"),
+                 obj.Column("ClassName", "Class Name")))
+    }
+</div>
+<br />
+<h3>Teacher in Our School In Their Qualification</h3>
+<div>
+    @{ WebGrid obj1 = new WebGrid(source: Model.TeacherMastersss, canPage: true, rowsPerPage: 10);
+
+        @obj1.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        columns: obj.Columns(
+                 obj.Column("TeacherId", "Teacher Id"),
+                 obj.Column("TeacherName", "Teacher Name"),
+                 obj.Column("Qualification", "Qualification")))
+    }
+</div>
